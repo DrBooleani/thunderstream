@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
-import { NgOptimizedImage } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
 
 const SHARED_COMPONENTS = [
-  HeaderComponent
+  HeaderComponent,
+  FooterComponent
 ];
 
 @NgModule({
@@ -12,6 +14,7 @@ const SHARED_COMPONENTS = [
     SHARED_COMPONENTS
   ],
   imports: [
+    DatePipe,
     NgOptimizedImage,
     RouterModule
   ],
