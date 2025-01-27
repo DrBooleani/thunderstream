@@ -1,0 +1,16 @@
+<header>
+  <div class="logo">
+    <a routerLink="/">
+      <img ngSrc="assets/images/logo.png" width="120" height="120" alt="ThunderStream Logo" priority />
+    </a>
+  </div>
+  <div class="navigation">
+    <ul>
+      @for (link of links; track $index) {
+        <li>
+          <a [routerLink]="link.url">{{ link.label }}</a>
+        </li>
+      }
+    </ul>
+  </div>
+</header>
