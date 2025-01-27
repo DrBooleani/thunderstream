@@ -37,6 +37,7 @@
               }
             ],
             "styles": [
+              "node_modules/modern-normalize/modern-normalize.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -67,6 +68,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "hmr": false
+          },
           "configurations": {
             "production": {
               "buildTarget": "thunderstream:build:production"
