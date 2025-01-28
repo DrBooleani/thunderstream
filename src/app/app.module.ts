@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BannerModule } from "./shared/banner/banner.module";
 
 @NgModule({
   declarations: [
@@ -21,8 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    SliderModule
-  ],
+    SliderModule,
+    BannerModule
+],
   providers: [
     provideHttpClient()
   ],
