@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MoviesService } from '../../core/services/movies.service';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { MoviesDTO } from '../../core/models/Movie';
+import { Movie, MoviesDTO } from '../../core/models/Movie';
 import { TvShowsService } from '../../core/services/tv-shows.service';
-
 @Component({
   selector: 'app-home',
   standalone: false,
