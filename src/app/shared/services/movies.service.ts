@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable, take } from 'rxjs';
+import { MoviesDTO } from '../../core/models/Movie';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class MoviesService {
 
   constructor(private http: HttpClient) { }
 
-  getPopularMovies(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}movie/popular${this.apiKey}`).pipe(take(1));
+  getPopularMovies(): Observable<MoviesDTO> {
+    return this.http.get<MoviesDTO>(`${this.baseUrl}movie/popular${this.apiKey}`).pipe(take(1));
   }
 }

@@ -1,32 +1,31 @@
-<div class="slider">
-  <div class="slide">
-    <div class="slide-bg">
-      <img src="https://image.tmdb.org/t/p/original/oHPoF0Gzu8xwK4CtdXDaWdcuZxZ.jpg" alt="Mufasa The Lion King">
-    </div>
-    <div class="slide-pane">
-      <h2 class="title">Slider Title</h2>
-      <div class="meta">
-        <div class="rating">
-          <i class="pi pi-star-fill"></i>
-          <span>8.0</span>
-          <span>/10</span>
+<div class="slider" *ngIf="movies$ | async as movies">
+  <ng-container *ngFor="let movie of movies.results; let movieIndex = index">
+  <div class="slide" *ngIf="movieIndex === slideIndex" @slideFade>
+      <div class="slide-bg">
+        <img [src]="getSliderImage(movie.backdrop_path)" alt="{{movie.original_title + ' poster' }}" />
+      </div>
+      <div class="slide-pane">
+        <h2 class="title">{{ movie.original_title }}</h2>
+        <div class="meta">
+          <div class="rating">
+            <i class="pi pi-star-fill"></i>
+            <span>{{ movie.vote_average | number:'1.1-1'  }}</span>
+            <span>/10</span>
+          </div>
+          <div class="votes">
+            <i class="pi pi-users"></i>
+            <span>{{ movie.vote_count }}</span>
+          </div>
+          <div class="release-date">
+            <i class="pi pi-calendar"></i>
+            <span>{{ movie.release_date }}</span>
+          </div>
         </div>
-        <div class="votes">
-          <i class="pi pi-users"></i>
-          <span>4500</span>
-        </div>
-        <div class="release-date">
-          <i class="pi pi-calendar"></i>
-          <span>19.12.2024</span>
+  
+        <div class="description">
+          {{ movie.overview }}
         </div>
       </div>
-
-      <div class="description">
-        A spin-off of the blockbuster The Lion King, the film tells the story of Mufasa, an orphaned, lost and alone cub
-        who meets a friendly lion named Taka, heir to a royal lineage. The chance encounter begins a great journey for
-        an extraordinary group of displaced people in search of their destiny, as well as revealing the rise of one of
-        the greatest kings of the Pride Lands. The Lion King
-      </div>
-    </div>
   </div>
+</ng-container>
 </div>
