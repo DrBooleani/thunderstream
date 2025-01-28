@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MoviesService } from '../services/movies.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { MoviesDTO } from '../../core/models/Movie';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { imagePath } from '../../core/constants/image-path';
+import { MoviesService } from '../../core/services/movies.service';
 
 @Component({
   selector: 'app-slider',
@@ -52,6 +52,6 @@ export class SliderComponent implements OnInit, OnDestroy {
   }
 
   getSliderImage(backdrop_path: string): string {
-    return imagePath + backdrop_path;
+    return imagePath + '/w1280/' + backdrop_path;
   }
 }

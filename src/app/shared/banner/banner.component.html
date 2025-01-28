@@ -1,34 +1,7 @@
-<div class="banner container">
+<div class="banner container" *ngIf="upcomingMovies$ | async as upcomingMovies">
   <div class="grid">
-    <div class="col-2">
-      <app-show-item></app-show-item>
-    </div>
-    <div class="col-2">
-      <app-show-item></app-show-item>
-    </div>
-    <div class="col-2">
-      <app-show-item></app-show-item>
-    </div>
-    <div class="col-2">
-      <app-show-item></app-show-item>
-    </div>
-    <div class="col-2">
-      <app-show-item></app-show-item>
-    </div>
-    <div class="col-2">
-      <app-show-item></app-show-item>
-    </div>
-    <div class="col-2">
-      <app-show-item></app-show-item>
-    </div>
-    <div class="col-2">
-      <app-show-item></app-show-item>
-    </div>
-    <div class="col-2">
-      <app-show-item></app-show-item>
-    </div>
-    <div class="col-2">
-      <app-show-item></app-show-item>
+    <div class="col-2" *ngFor="let movie of upcomingMovies.results">
+      <app-show-item [showItem]="movie" ></app-show-item>
     </div>
   </div>
 </div>

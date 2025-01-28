@@ -1,12 +1,12 @@
-<a class="show-item">
+<a class="show-item" *ngIf="showItem">
   <div class="show-item-rating">
     <i class="pi pi-star"></i>
-    <span>9.5/10</span>
+    <span>{{ showItem.vote_average | number: '1.1-1' }}/10</span>
   </div>
   <div class="show-item-image">
-    <img src="https://image.tmdb.org/t/p/w1280//oHPoF0Gzu8xwK4CtdXDaWdcuZxZ.jpg" alt="Mufasa The Lion King">
+    <img [src]="getImage(showItem.backdrop_path)" [alt]="showItem.original_title + ' poster'">
   </div>
   <div class="show-item-title">
-    Any Title
+    {{ showItem.original_title }}
   </div>
 </a>

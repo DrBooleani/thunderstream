@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Movie } from '../../../core/models/Movie';
+import { imagePath } from '../../../core/constants/image-path';
 
 @Component({
   selector: 'app-show-item',
@@ -8,5 +10,11 @@ import { Component } from '@angular/core';
   styleUrl: './show-item.component.css'
 })
 export class ShowItemComponent {
+  @Input() showItem : Movie | null = null;
+  
 
+  getImage(backdrop_path: string): string {
+    return imagePath + '/w500/' + backdrop_path;
+  }
+  
 }
