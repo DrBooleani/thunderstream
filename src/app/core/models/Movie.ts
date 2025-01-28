@@ -11,6 +11,7 @@ export interface Movie {
   title: string;
   vote_average: number;
   vote_count: number;
+  name?: string;
 };
 
 export interface MoviesDTO {

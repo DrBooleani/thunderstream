@@ -4,9 +4,9 @@
     <span>{{ showItem.vote_average | number: '1.1-1' }}/10</span>
   </div>
   <div class="show-item-image">
-    <img [src]="getImage(showItem.backdrop_path)" [alt]="showItem.original_title + ' poster'">
+    <img [src]="getImage(showItem.backdrop_path)" [alt]="showItem.original_title || showItem.name + ' poster'">
   </div>
   <div class="show-item-title">
-    {{ showItem.original_title }}
+    {{ showItem.original_title || showItem.name }}
   </div>
 </a>
