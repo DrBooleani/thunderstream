@@ -1,10 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { catchError, Observable, take, throwError } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { MoviesDTO } from '../../core/models/Movie';
 import { HttpUtilsService } from './http-utils.service';
-import { imagePath } from '../constants/image-path';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +15,25 @@ export class MoviesService {
   constructor(private httpUtils: HttpUtilsService) { }
 
   getPopularMovies(): Observable<MoviesDTO> {
-    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie/popular');
+    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie/popular').pipe(
+      map(this.sliceResults)
+    );
   }
 
   getUpcomingMovies(): Observable<MoviesDTO> {
-    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie/upcoming');
+    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie/upcoming').pipe(
+      map(this.sliceResults)
+    );
   }
 
   getTopRatedMovies(): Observable<MoviesDTO> {
-    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie/top_rated');
+    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie/top_rated').pipe(
+      map(this.sliceResults)
+    );
+  }
+
+  private sliceResults(data?: any): any {
+    return { ...data, results: data.results.slice(0, 12) };
   }
   
 }
