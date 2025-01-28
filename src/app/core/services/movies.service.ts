@@ -23,5 +23,9 @@ export class MoviesService {
   getUpcomingMovies(): Observable<MoviesDTO> {
     return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie/upcoming');
   }
+
+  getTopRatedMovies(): Observable<MoviesDTO> {
+    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie/top_rated');
+  }
   
 }
