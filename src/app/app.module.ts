@@ -1,16 +1,20 @@
+import { provideHttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import Aura from '@primeng/themes/aura';
+import { providePrimeNG } from 'primeng/config';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
-import { SliderModule } from './shared/slider/slider.module';
 import { HomeComponent } from './pages/home/home.component';
 import { MoviesComponent } from './pages/movies/movies.component';
-import { provideHttpClient } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BannerModule } from "./shared/banner/banner.module";
 import { ShowDetailsComponent } from './pages/show-details/show-details.component';
+import { BannerModule } from './shared/banner/banner.module';
+import { SharedModule } from './shared/shared.module';
+import { SliderModule } from './shared/slider/slider.module';
+import { PrimengModule } from './shared/primeng/primeng.module';
 
 @NgModule({
   declarations: [
@@ -23,12 +27,18 @@ import { ShowDetailsComponent } from './pages/show-details/show-details.componen
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    PrimengModule,
     SharedModule,
     SliderModule,
     BannerModule
 ],
   providers: [
-    provideHttpClient()
+    provideHttpClient(),
+    providePrimeNG({
+      theme: {
+        preset: Aura
+      }
+    })
   ],
   bootstrap: [AppComponent]
 })

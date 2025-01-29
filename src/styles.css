@@ -7,6 +7,22 @@ body {
   color: white;
   background-color: #141414;
 }
+.p-tabs {
+  align-items: center !important;
+}
+
+.p-tab, .p-tabpanels {
+  background: #141414 !important;
+}
+
+.p-tab-active {
+  color: yellow !important;
+  border-color: yellow !important;
+}
+
+span.p-tablist-active-bar {
+  background: yellow !important;
+}
 
 a {
   color: white;
@@ -21,3 +37,4 @@ h1 {
   margin: 0.5rem;
   padding: 0.5rem;
 }
+

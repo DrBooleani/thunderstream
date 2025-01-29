@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Movie } from '../../core/models/Movie';
 import { MoviesService } from '../../core/services/movies.service';
+import { IMAGES_SIZES } from '../../core/constants/image-path';
 
 @Component({
   selector: 'app-show-details',
@@ -15,6 +16,7 @@ export class ShowDetailsComponent implements OnInit, OnDestroy {
 
   showId = 0;
   show$ = new BehaviorSubject<Movie | null>(null);
+  imagesSizes = IMAGES_SIZES;
 
   destroy$ = new Subject<void>();
 

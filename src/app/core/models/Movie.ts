@@ -12,6 +12,10 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
   name?: string;
+  revenue?: number;
+  runtime?: string;
+  status?: string;
+  genres: Genre[];
 };
 
 export interface MoviesDTO {
@@ -19,4 +23,9 @@ export interface MoviesDTO {
   results: Movie[];
   total_pages: number;
   total_results: number;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
 }
