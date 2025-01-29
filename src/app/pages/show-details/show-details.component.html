@@ -54,7 +54,13 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="Videos">
-      <p>Content2</p>
+      <ng-container *ngIf="showVideo$ | async as showVideos">
+        <div class="grid">
+          <div class="col-4" *ngFor="let showVideo of showVideos">
+            <app-embedded-video [key]="showVideo.key"></app-embedded-video>
+          </div>
+        </div>
+      </ng-container>
     </p-tabPanel>
     <p-tabPanel header="Photos">
       <p>Content3</p>

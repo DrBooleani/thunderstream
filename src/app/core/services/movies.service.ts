@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { map, Observable } from 'rxjs';
 import { Movie, MoviesDTO } from '../../core/models/Movie';
 import { HttpUtilsService } from './http-utils.service';
+import { Video, VideoDTO } from '../models/Video';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +37,12 @@ export class MoviesService {
     return this.httpUtils.getRequest<Movie>(this.baseUrl, this.apiKey, 'movie', id);
   }
 
+  getMovieVideos(id: number): Observable<Video[]> {
+    return this.httpUtils.getRequest<VideoDTO>(this.baseUrl, this.apiKey, `movie/${id}/videos`).pipe(map((data) => data.results));
+  }
+
   private sliceResults(data?: any): any {
     return { ...data, results: data.results.slice(0, 12) };
   }
-  
+
 }

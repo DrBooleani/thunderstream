@@ -15,6 +15,7 @@ import { BannerModule } from './shared/banner/banner.module';
 import { SharedModule } from './shared/shared.module';
 import { SliderModule } from './shared/slider/slider.module';
 import { PrimengModule } from './shared/primeng/primeng.module';
+import { EmbeddedVideoModule } from "./shared/embedded-video/embedded-video.module";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PrimengModule } from './shared/primeng/primeng.module';
     PrimengModule,
     SharedModule,
     SliderModule,
-    BannerModule
+    BannerModule,
+    EmbeddedVideoModule
 ],
   providers: [
     provideHttpClient(),
