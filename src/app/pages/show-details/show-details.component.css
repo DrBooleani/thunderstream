@@ -18,4 +18,14 @@
 
 .stat .value {
   color: yellow;
-} 
+}
+
+.actor {
+  padding: 10px;
+}
+.actor img {
+  width: 100%;
+}
+.actor div {
+  text-align: center;
+}

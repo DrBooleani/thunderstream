@@ -7,6 +7,7 @@ import { IMAGES_SIZES } from '../../core/constants/image-path';
 import { Video } from '../../core/models/Video';
 import { Image } from '../../core/models/Image';
 import { getDataFromServiceById } from '../../shared/utils/utils';
+import { Actor } from '../../core/models/Actor';
 
 @Component({
   selector: 'app-show-details',
@@ -20,6 +21,7 @@ export class ShowDetailsComponent implements OnInit, OnDestroy {
   show$ = new BehaviorSubject<Movie | null>(null);
   showVideo$ = new BehaviorSubject<Video[]>([]);
   showImage$ = new BehaviorSubject<Image[]>([]);
+  showCast$ = new BehaviorSubject<Actor[]>([]);
 
   imagesSizes = IMAGES_SIZES;
 
@@ -32,6 +34,7 @@ export class ShowDetailsComponent implements OnInit, OnDestroy {
     getDataFromServiceById(this.moviesService.getMovieById.bind(this.moviesService), this.show$, this.showId);
     getDataFromServiceById(this.moviesService.getMovieVideos.bind(this.moviesService), this.showVideo$, this.showId);
     getDataFromServiceById(this.moviesService.getMoviePhotos.bind(this.moviesService), this.showImage$, this.showId);
+    getDataFromServiceById(this.moviesService.getMovieCast.bind(this.moviesService), this.showCast$, this.showId);
   }
 
   private getShowId() {

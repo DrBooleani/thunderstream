@@ -5,6 +5,7 @@ import { Movie, MoviesDTO } from '../../core/models/Movie';
 import { HttpUtilsService } from './http-utils.service';
 import { Video, VideoDTO } from '../models/Video';
 import { Image, ImagesDTO } from '../models/Image';
+import { Actor, CreditsDTO } from '../models/Actor';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,10 @@ export class MoviesService {
 
   getMoviePhotos(id: number): Observable<Image[]> {
     return this.httpUtils.getRequest<ImagesDTO>(this.baseUrl, this.apiKey, 'movie', id, ['images']).pipe(map((data) => data.backdrops));
+  }
+
+  getMovieCast(id: number): Observable<Actor[]> {
+    return this.httpUtils.getRequest<CreditsDTO>(this.baseUrl, this.apiKey, 'movie', id, ['credits']).pipe(map((data) => data.cast));
   }
 
   private sliceResults(data?: any): any {
