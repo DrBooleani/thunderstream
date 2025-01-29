@@ -1,19 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MoviesService } from '../../core/services/movies.service';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { Movie, MoviesDTO } from '../../core/models/Movie';
+import { MoviesDTO } from '../../core/models/Movie';
 import { TvShowsService } from '../../core/services/tv-shows.service';
+import { getDataFromService } from '../../shared/utils/utils';
+
 @Component({
   selector: 'app-home',
   standalone: false,
-  
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit, OnDestroy {
   constructor(
-    private moviesService: MoviesService, 
-    private tvShowsService: TvShowsService) {}
+    private moviesService: MoviesService,
+    private tvShowsService: TvShowsService
+  ) {}
 
   popularMovies$ = new BehaviorSubject<MoviesDTO | null>(null);
   upcomingMovies$ = new BehaviorSubject<MoviesDTO | null>(null);
@@ -23,10 +25,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   destroy$ = new Subject<void>();
 
   ngOnInit(): void {
-    this.getPopularMovies();
-    this.getUpcomingMovies();
-    this.getTopRatedMovies();
-    this.getPopularTvShows();
+    getDataFromService(
+      this.moviesService.getPopularMovies.bind(this.moviesService),
+      this.popularMovies$
+    );
+    getDataFromService(
+      this.moviesService.getUpcomingMovies.bind(this.moviesService),
+      this.upcomingMovies$
+    );
+    getDataFromService(
+      this.moviesService.getTopRatedMovies.bind(this.moviesService),
+      this.topRatedMovies$
+    );
+    getDataFromService(
+      this.tvShowsService.getPopularTvShows.bind(this.tvShowsService),
+      this.popularTvShows$
+    );
   }
 
   ngOnDestroy(): void {
@@ -34,32 +48,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.upcomingMovies$.unsubscribe();
     this.topRatedMovies$.unsubscribe();
     this.popularTvShows$.unsubscribe();
-    
+
     this.destroy$.next();
     this.destroy$.complete();
   }
-
-  getPopularMovies(): void {
-    this.moviesService.getPopularMovies().subscribe((data) => {
-      this.popularMovies$.next(data);
-    });
-  }
-  getUpcomingMovies(): void {
-    this.moviesService.getUpcomingMovies().subscribe((data) => {
-      this.upcomingMovies$.next(data);
-    });
-  }
-
-  getTopRatedMovies(): void {
-    this.moviesService.getTopRatedMovies().subscribe((data) => {
-      this.topRatedMovies$.next(data);
-    }); 
-  }
-
-  getPopularTvShows(): void {
-    this.tvShowsService.getPopularTvShows().subscribe((data) => {
-      this.popularTvShows$.next(data);
-    });
-  }
-
 }

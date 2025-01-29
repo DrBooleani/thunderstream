@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Movie, MoviesDTO } from '../../core/models/Movie';
 import { HttpUtilsService } from './http-utils.service';
 import { Video, VideoDTO } from '../models/Video';
+import { Image, ImagesDTO } from '../models/Image';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,11 @@ export class MoviesService {
   }
 
   getMovieVideos(id: number): Observable<Video[]> {
-    return this.httpUtils.getRequest<VideoDTO>(this.baseUrl, this.apiKey, `movie/${id}/videos`).pipe(map((data) => data.results));
+    return this.httpUtils.getRequest<VideoDTO>(this.baseUrl, this.apiKey, 'movie', id, ['videos']).pipe(map((data) => data.results));
+  }
+
+  getMoviePhotos(id: number): Observable<Image[]> {
+    return this.httpUtils.getRequest<ImagesDTO>(this.baseUrl, this.apiKey, 'movie', id, ['images']).pipe(map((data) => data.backdrops));
   }
 
   private sliceResults(data?: any): any {

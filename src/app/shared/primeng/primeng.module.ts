@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 
-import { TabViewModule } from 'primeng/tabview';''
+import { TabViewModule } from 'primeng/tabview';
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
   exports: [
-    TabViewModule
+    TabViewModule,
+    ImageModule
   ]
 })
 export class PrimengModule { }
