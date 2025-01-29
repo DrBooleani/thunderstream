@@ -1,0 +1,7 @@
+<ng-container *ngIf="show$ | async as show">
+  <app-slider [slides]="[show]" [isHeader]="true"></app-slider>
+</ng-container>
+<h1>The Movie ID is {{showId}}</h1>
+<pre>
+  {{ show$ | async | json }}
+</pre>

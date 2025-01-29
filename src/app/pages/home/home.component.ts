@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private moviesService: MoviesService, 
     private tvShowsService: TvShowsService) {}
 
+  popularMovies$ = new BehaviorSubject<MoviesDTO | null>(null);
   upcomingMovies$ = new BehaviorSubject<MoviesDTO | null>(null);
   topRatedMovies$ = new BehaviorSubject<MoviesDTO | null>(null);
   popularTvShows$ = new BehaviorSubject<MoviesDTO | null>(null);
@@ -22,12 +23,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   destroy$ = new Subject<void>();
 
   ngOnInit(): void {
+    this.getPopularMovies();
     this.getUpcomingMovies();
     this.getTopRatedMovies();
     this.getPopularTvShows();
   }
 
   ngOnDestroy(): void {
+    this.popularMovies$.unsubscribe();
     this.upcomingMovies$.unsubscribe();
     this.topRatedMovies$.unsubscribe();
     this.popularTvShows$.unsubscribe();
@@ -36,6 +39,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  getPopularMovies(): void {
+    this.moviesService.getPopularMovies().subscribe((data) => {
+      this.popularMovies$.next(data);
+    });
+  }
   getUpcomingMovies(): void {
     this.moviesService.getUpcomingMovies().subscribe((data) => {
       this.upcomingMovies$.next(data);

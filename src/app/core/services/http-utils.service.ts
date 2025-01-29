@@ -10,12 +10,15 @@ export class HttpUtilsService {
 
   constructor(private http: HttpClient) { }
 
-  buildUrl(baseUrl: string, apiKey: string, endpoint: string): string {
+  buildUrl(baseUrl: string, apiKey: string, endpoint: string, id?: number): string {
+    if (id != null) {
+      return `${baseUrl}${endpoint}/${id}${apiKey}`;
+    }
     return `${baseUrl}${endpoint}${apiKey}`;
   }
 
-  getRequest<T>(baseUrl: string, apiKey: string, endpoint: string) {
-    const url = this.buildUrl(baseUrl, apiKey, endpoint);
+  getRequest<T>(baseUrl: string, apiKey: string, endpoint: string, id?: number) {
+    const url = this.buildUrl(baseUrl, apiKey, endpoint, id);
     return this.http.get<T>(url).pipe(
       take(1),
       catchError(this.handleError)

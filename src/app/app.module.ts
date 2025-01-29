@@ -10,12 +10,14 @@ import { MoviesComponent } from './pages/movies/movies.component';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BannerModule } from "./shared/banner/banner.module";
+import { ShowDetailsComponent } from './pages/show-details/show-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    MoviesComponent
+    MoviesComponent,
+    ShowDetailsComponent
   ],
   imports: [
     BrowserModule,

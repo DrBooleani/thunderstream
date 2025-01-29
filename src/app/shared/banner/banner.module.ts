@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BannerComponent } from './banner.component';
 import { ShowItemComponent } from './show-item/show-item.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -11,7 +12,8 @@ import { ShowItemComponent } from './show-item/show-item.component';
     ShowItemComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     BannerComponent

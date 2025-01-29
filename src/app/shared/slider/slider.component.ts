@@ -1,9 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { MoviesDTO } from '../../core/models/Movie';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { Movie } from '../../core/models/Movie';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { imagePath } from '../../core/constants/image-path';
-import { MoviesService } from '../../core/services/movies.service';
 
 @Component({
   selector: 'app-slider',
@@ -18,15 +17,18 @@ import { MoviesService } from '../../core/services/movies.service';
   styleUrl: './slider.component.css'
 })
 export class SliderComponent implements OnInit, OnDestroy {
-  constructor(private moviesService: MoviesService) {}
+  @Input() slides: Movie[] = [];
+  @Input() isHeader = false;
 
   slideIndex = 0;  
-  movies$ = new BehaviorSubject<MoviesDTO | null>(null);
   destroy$ = new Subject<void>();
 
+  constructor() {}
+
   ngOnInit(): void {
-    this.getAllMovies();
-    this.changeSlide();
+    if (!this.isHeader) {
+      this.changeSlide();
+    }
   }
 
   private changeSlide() {
@@ -38,15 +40,7 @@ export class SliderComponent implements OnInit, OnDestroy {
     }, 5000);
   }
 
-  private getAllMovies() {
-    this.moviesService.getPopularMovies().subscribe({
-      next: (data) => this.movies$.next(data),
-      error: (err) => console.error(err)
-    });
-  }
-
   ngOnDestroy(): void {
-    this.movies$.unsubscribe();
     this.destroy$.next();
     this.destroy$.complete();
   }
