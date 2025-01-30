@@ -51,8 +51,8 @@ export class MoviesService {
     return this.httpUtils.getRequest<CreditsDTO>(this.baseUrl, this.apiKey, 'movie', id, ['credits']).pipe(map((data) => data.cast));
   }
 
-  getMovieSimilar(id: number): Observable<MoviesDTO> {
-    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie', id, ['similar']).pipe(map((this.sliceResults)));
+  getMovieSimilar(id: number): Observable<Movie[]> {
+    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie', id, ['similar']).pipe(map((data) => data.results.slice(0, 12)));
   }
 
   searchMovies(page: number, searchValue?: string): Observable<MoviesDTO> {

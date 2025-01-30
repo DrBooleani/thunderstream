@@ -89,6 +89,9 @@
       </ng-template>
     </p-carousel>
   </ng-container>
+  <ng-container *ngIf="showSimilars$ | async as similarShows">
+    <app-banner title="Watch Similar" [shows]="similarShows" [showsType]="showType" />
+  </ng-container>
 </ng-container>
 <ng-template #defaultActorPhoto>
   <img src="assets/images/actor.jpg" alt="No Picture"/>

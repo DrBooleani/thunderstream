@@ -12,4 +12,5 @@ import { Movie } from '../../core/models/Movie';
 export class BannerComponent {
   @Input() shows: Movie[] = [];
   @Input() title = '';
+  @Input() showsType: 'tv' | 'movie' = 'movie';
 }

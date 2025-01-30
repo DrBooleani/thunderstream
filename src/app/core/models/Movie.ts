@@ -15,7 +15,7 @@ export interface Movie {
   revenue?: number;
   runtime?: string;
   status?: string;
-  genres: Genre[];
+  genres?: Genre[];
 };
 
 export interface MoviesDTO {

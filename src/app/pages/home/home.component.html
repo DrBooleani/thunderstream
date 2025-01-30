@@ -8,5 +8,5 @@
   <app-banner [title]="'Top-Rated Movies'" [shows]="topRatedMovies.results"></app-banner>
 </ng-container>
 <ng-container *ngIf="popularTvShows$ | async as popularTvShows">
-  <app-banner [title]="'Popular TV Shows'" [shows]="popularTvShows.results"></app-banner>
+  <app-banner [title]="'Popular TV Shows'" [shows]="popularTvShows" showsType="tv"></app-banner>
 </ng-container>

@@ -6,8 +6,8 @@ import { ShowListComponent } from './pages/show-list/show-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'list', component: ShowListComponent },
-  { path: 'detail/:id', component: ShowDetailsComponent }
+  { path: 'list/:type', component: ShowListComponent },
+  { path: 'detail/:id/:type', component: ShowDetailsComponent }
 ];
 
 @NgModule({

@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MoviesService } from '../../core/services/movies.service';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { MoviesDTO } from '../../core/models/Movie';
+import { BehaviorSubject, map, Subject } from 'rxjs';
+import { Movie, MoviesDTO } from '../../core/models/Movie';
 import { TvShowsService } from '../../core/services/tv-shows.service';
 import { getDataFromService } from '../../shared/utils/utils';
+import { mapToMovies } from '../../core/models/Tv-Show';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   popularMovies$ = new BehaviorSubject<MoviesDTO | null>(null);
   upcomingMovies$ = new BehaviorSubject<MoviesDTO | null>(null);
   topRatedMovies$ = new BehaviorSubject<MoviesDTO | null>(null);
-  popularTvShows$ = new BehaviorSubject<MoviesDTO | null>(null);
+  popularTvShows$ = new BehaviorSubject<Movie[] | null>([]);
 
   destroy$ = new Subject<void>();
 
@@ -37,10 +38,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.moviesService.getTopRatedMovies.bind(this.moviesService),
       this.topRatedMovies$
     );
-    getDataFromService(
-      this.tvShowsService.getPopularTvShows.bind(this.tvShowsService),
-      this.popularTvShows$
-    );
+    this.tvShowsService.getTvShowsByType('popular', 12).pipe(
+      map(mapToMovies)
+    ).subscribe(this.popularTvShows$);
   }
 
   ngOnDestroy(): void {

@@ -17,8 +17,8 @@ export class HeaderComponent implements OnInit {
   getLinks() {
     return [
       { url: '/', label: 'Home' },
-      { url: '/list', label: 'Movies' },
-      { url: '/tv-shows', label: 'TV Shows' },
+      { url: '/list/movie', label: 'Movies' },
+      { url: '/list/tv', label: 'TV Shows' },
       { url: '/genres', label: 'Genres' }
     ];
   }
