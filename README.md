@@ -1,59 +1,77 @@
-# Thunderstream
+# ThunderStream
+<div align="center">
+  <img src="public/assets/images/logo.png" width=100 height=100 />
+</div>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
+ThunderStream is a dynamic Angular-based application that leverages the [TMDB API](https://www.themoviedb.org/) to provide users with an exceptional movie and TV show browsing experience. Explore content sorted into categories like Animated, Comedy, and Drama with ease.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Category Browsing**: Seamlessly browse content organized into categories: **Animated**, **Comedy**, and **Drama**.
+- **Movie and TV Show Details**: Access detailed information about your favorite movies and TV shows, including descriptions, ratings, and more.
+- **Search Functionality**: Quickly find movies or shows by title.
+- **Responsive Design**: Optimized for viewing on desktops, tablets, and mobile devices.
 
-```bash
-ng serve
-```
+## Technologies Used
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Angular**: Framework for building the application.
+- **TMDB API**: Source for movie and TV show data.
+- **HTML5 & CSS3**: For structure and styling.
+- **TypeScript**: For enhanced JavaScript functionality and maintainability.
 
-## Code scaffolding
+## Installation
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+To run ThunderStream locally, follow these steps:
 
-```bash
-ng generate component component-name
-```
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd thunderstream
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Run the development server:
+   ```bash
+   ng serve
+   ```
+5. Open your browser and visit:
+   ```
+   http://localhost:4200
+   ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Screenshots
 
-```bash
-ng generate --help
-```
+### Home Page
+![Home Page](docs/home.png)
 
-## Building
+### Movie Details
+![Movie Details](docs/print1.JPG)
 
-To build the project run:
+## Watch Similar
+![Watch Similar](docs/print2.JPG)
 
-```bash
-ng build
-```
+### Search Functionality
+![Search](docs/print3.JPG)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## TV Details
+![Search](docs/print4.JPG)
 
-## Running unit tests
+## Categories Page
+![Categories](docs/print5.JPG)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## TMDB API Integration
+This application integrates with the TMDB API to fetch real-time data for movies and TV shows. To use the TMDB API, create an account at [TMDB](https://www.themoviedb.org/) and generate an API key.
 
-```bash
-ng test
-```
+## License
 
-## Running end-to-end tests
+This project is licensed under the MIT License. See the LICENSE file for more information.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+Enjoy browsing your favorite movies and TV shows on **ThunderStream**! Feel free to contribute by submitting issues or pull requests.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
