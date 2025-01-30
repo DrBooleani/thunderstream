@@ -9,9 +9,17 @@
         </p-iconfield>
       </div>
       
-      <div class="col-2" *ngFor="let show of showList">
+      <div class="col-2" *ngFor="let show of showList.results">
         <app-show-item [showItem]="show"></app-show-item>
       </div>
-    </div>
+
+        <div class="col-12">
+          <p-paginator
+            (onPageChange)="pageChanged($event)"
+            [rows]="20"
+            [totalRecords]="showList.total_results"
+          ></p-paginator>
+        </div>
+      </div>
   </ng-container>
 </div>

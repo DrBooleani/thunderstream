@@ -7,6 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { ButtonModule } from 'primeng/button';
+import { PaginatorModule } from 'primeng/paginator';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     IconFieldModule,
     ButtonModule,
-    CarouselModule
+    CarouselModule,
+    PaginatorModule
   ]
 })
 export class PrimengModule { }

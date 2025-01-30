@@ -55,7 +55,7 @@ export class MoviesService {
     return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie', id, ['similar']).pipe(map((this.sliceResults)));
   }
 
-  searchMovies(page: number, searchValue?: string): Observable<Movie[]> {
+  searchMovies(page: number, searchValue?: string): Observable<MoviesDTO> {
     const queryParams = {
       query: searchValue || '',
       page: page.toString()
@@ -69,7 +69,7 @@ export class MoviesService {
       undefined,
       undefined,
       queryParams
-    ).pipe(map((data) => data.results));
+    );
   }
   
   private sliceResults(data?: any): any {
