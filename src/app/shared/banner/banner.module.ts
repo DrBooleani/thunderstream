@@ -16,7 +16,8 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   exports: [
-    BannerComponent
+    BannerComponent,
+    ShowItemComponent
   ]
 })
 export class BannerModule { }

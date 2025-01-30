@@ -51,6 +51,27 @@ export class MoviesService {
     return this.httpUtils.getRequest<CreditsDTO>(this.baseUrl, this.apiKey, 'movie', id, ['credits']).pipe(map((data) => data.cast));
   }
 
+  getMovieSimilar(id: number): Observable<MoviesDTO> {
+    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'movie', id, ['similar']).pipe(map((this.sliceResults)));
+  }
+
+  searchMovies(page: number, searchValue?: string): Observable<Movie[]> {
+    const queryParams = {
+      query: searchValue || '',
+      page: page.toString()
+    };
+
+    
+    return this.httpUtils.getRequest<MoviesDTO>(
+      this.baseUrl, 
+      this.apiKey, 
+      'search/movie',
+      undefined,
+      undefined,
+      queryParams
+    ).pipe(map((data) => data.results));
+  }
+  
   private sliceResults(data?: any): any {
     return { ...data, results: data.results.slice(0, 12) };
   }

@@ -10,7 +10,14 @@ export class HttpUtilsService {
 
   constructor(private http: HttpClient) { }
 
-  buildUrl(baseUrl: string, apiKey: string, endpoint: string, id?: number | string, moreFields?: string[]): string {
+  buildUrl(
+    baseUrl: string,
+    apiKey: string,
+    endpoint: string,
+    queryParams?: { [key: string]: string },
+    id?: number | string,
+    moreFields?: string[]
+  ): string {
     let url = `${baseUrl}${endpoint}`;
 
     if (id != null) {
@@ -23,13 +30,27 @@ export class HttpUtilsService {
       });
     }
 
-    url = `${url}${apiKey}`;
+    const params = new URLSearchParams();
+    if (queryParams) {
+      for (const key in queryParams) {
+        if (queryParams[key]) {
+          params.set(key, queryParams[key]);
+        }
+      }
+    }
+
+    if (params.toString()) {
+      url = `${url}${apiKey}&${params.toString()}`;
+    } else {
+      url = `${url}${apiKey}`;
+    }
 
     return url;
   }
 
-  getRequest<T>(baseUrl: string, apiKey: string, endpoint: string, id?: number | string, moreFields?: string[]) {
-    const url = this.buildUrl(baseUrl, apiKey, endpoint, id, moreFields);
+
+  getRequest<T>(baseUrl: string, apiKey: string, endpoint: string, id?: number | string, moreFields?: string[], queryParams?: { [key: string]: string },) {
+    const url = this.buildUrl(baseUrl, apiKey, endpoint, queryParams, id, moreFields);
     return this.http.get<T>(url).pipe(
       take(1),
       catchError(this.handleError)
