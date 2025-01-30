@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { map, Observable } from 'rxjs';
-import { Movie, MoviesDTO } from '../../core/models/Movie';
+import { Genre, GenresDTO, Movie, MoviesDTO } from '../../core/models/Movie';
 import { HttpUtilsService } from './http-utils.service';
 import { Video, VideoDTO } from '../models/Video';
 import { Image, ImagesDTO } from '../models/Image';
@@ -72,6 +72,19 @@ export class MoviesService {
     );
   }
   
+  getMovieGenres(): Observable<Genre[]> {
+    return this.httpUtils.getRequest<GenresDTO>(this.baseUrl, this.apiKey, 'genre', undefined, ['movie', 'list'])
+      .pipe(map((data) => data.genres));
+  }
+
+  getMoviesByGenre(genreId: number, pageNumber = 1) {
+    const queryParams = {
+      with_genres: genreId.toString(),
+      page: pageNumber.toString()
+    };
+    return this.httpUtils.getRequest<MoviesDTO>(this.baseUrl, this.apiKey, 'discover', undefined, ['movie'], queryParams);
+  }
+
   private sliceResults(data?: any): any {
     return { ...data, results: data.results.slice(0, 12) };
   }

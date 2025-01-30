@@ -1,0 +1,9 @@
+.genre-links a {
+  padding: 5px;
+  background-color: rgb(255, 0, 0);
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}

@@ -17,13 +17,15 @@ import { PrimengModule } from './shared/primeng/primeng.module';
 import { EmbeddedVideoModule } from "./shared/embedded-video/embedded-video.module";
 import { ShowListComponent } from './pages/show-list/show-list.component';
 import { FormsModule } from '@angular/forms';
+import { GenresComponent } from './pages/genres/genres.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ShowDetailsComponent,
-    ShowListComponent
+    ShowListComponent,
+    GenresComponent
   ],
   imports: [
     BrowserModule,
