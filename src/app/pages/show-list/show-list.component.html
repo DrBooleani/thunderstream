@@ -4,9 +4,11 @@
       <div class="col-12">
         <p-iconfield iconposition="left" class="p-iconfield p-iconfield-left">
           <p-inputicon class="pi pi-search"></p-inputicon>
-          <input type="text" pInputText pSize="large" class="p-inputtext p-component" [(ngModel)]="searchValue" />
+          <input type="text" pInputText pSize="large" class="p-inputtext p-component" [(ngModel)]="searchValue" (change)="searchChanged()" />
+          <button (click)="searchChanged()" pButton label="Search" size="large" rounded="true"></button>
         </p-iconfield>
       </div>
+      
       <div class="col-2" *ngFor="let show of showList">
         <app-show-item [showItem]="show"></app-show-item>
       </div>

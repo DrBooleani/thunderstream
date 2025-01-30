@@ -6,6 +6,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { ButtonModule } from 'primeng/button';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { InputIconModule } from 'primeng/inputicon';
     InputIconModule,
     InputTextModule,
     IconFieldModule,
+    ButtonModule,
     CarouselModule
   ]
 })

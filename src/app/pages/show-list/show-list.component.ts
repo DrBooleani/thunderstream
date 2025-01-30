@@ -21,12 +21,21 @@ export class ShowListComponent implements OnInit, OnDestroy {
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    getDataFromService(this.moviesService.searchMovies.bind(this.moviesService, 1, this.searchValue), this.showList$);
+    this.getPagedShows(1);
   }
 
   ngOnDestroy(): void {
     this.showList$.unsubscribe();
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  getPagedShows(page: number, searchKeyword?: string) {
+    getDataFromService(this.moviesService.searchMovies.bind(this.moviesService, page, searchKeyword), this.showList$);
+  }
+
+  searchChanged() {
+    this.showList$.next([]);
+    this.getPagedShows(1, this.searchValue);
   }
 }

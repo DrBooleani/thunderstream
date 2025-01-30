@@ -61,11 +61,11 @@ export class MoviesService {
       page: page.toString()
     };
 
-    
+    const uri = searchValue ? "search/movie" : "movie/popular";
     return this.httpUtils.getRequest<MoviesDTO>(
       this.baseUrl, 
       this.apiKey, 
-      'search/movie',
+      uri,
       undefined,
       undefined,
       queryParams
